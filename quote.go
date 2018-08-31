@@ -80,9 +80,9 @@ const (
 	// Day3 - 3 day time period
 	Day3 Period = "3d"
 	// Weekly time period
-	Weekly Period = "w"
+	Weekly Period = "1wk"
 	// Monthly time period
-	Monthly Period = "m"
+	Monthly Period = "1mo"
 )
 
 // Log - standard logger, disabled by default
@@ -473,7 +473,7 @@ func NewQuotesFromJSONFile(filename string) (Quotes, error) {
 // NewQuoteFromYahoo - Yahoo historical prices for a symbol
 func NewQuoteFromYahoo(symbol, startDate, endDate string, period Period, adjustQuote bool) (Quote, error) {
 
-	if period != Daily {
+	if !(period == Daily || period == Weekly || period == Monthly) {
 		Log.Printf("Yahoo intraday data no longer supported\n")
 		return NewQuote("", 0), errors.New("Yahoo intraday data no longer supported")
 	}

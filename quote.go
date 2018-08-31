@@ -510,10 +510,11 @@ func NewQuoteFromYahoo(symbol, startDate, endDate string, period Period, adjustQ
 	}
 
 	url := fmt.Sprintf(
-		"https://query1.finance.yahoo.com/v7/finance/download/%s?period1=%d&period2=%d&interval=1d&events=history&crumb=%s",
+		"https://query1.finance.yahoo.com/v7/finance/download/%s?period1=%d&period2=%d&interval=%s&events=history&crumb=%s",
 		symbol,
 		from.Unix(),
 		to.Unix(),
+		period,
 		crumb[0])
 	resp, err = client.Get(url)
 	if err != nil {

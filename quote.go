@@ -138,7 +138,7 @@ func (q Quote) CSV() string {
 	var buffer bytes.Buffer
 	buffer.WriteString("datetime,open,high,low,close,volume\n")
 	for bar := range q.Close {
-		str := fmt.Sprintf("%s,%.*f,%.*f,%.*f,%.*f,%.*f\n", q.Date[bar].Format("2006-01-02 15:04"),
+		str := fmt.Sprintf("%s,%.*f,%.*f,%.*f,%.*f,%.*f\n", q.Date[bar].Format("2006-01-02"),
 			precision, q.Open[bar], precision, q.High[bar], precision, q.Low[bar], precision, q.Close[bar], precision, q.Volume[bar])
 		buffer.WriteString(str)
 	}
@@ -300,7 +300,7 @@ func (q Quotes) CSV() string {
 		precision := getPrecision(quote.Symbol)
 		for bar := range quote.Close {
 			str := fmt.Sprintf("%s,%s,%.*f,%.*f,%.*f,%.*f,%.*f\n",
-				quote.Symbol, quote.Date[bar].Format("2006-01-02 15:04"), precision, quote.Open[bar], precision, quote.High[bar], precision, quote.Low[bar], precision, quote.Close[bar], precision, quote.Volume[bar])
+				quote.Symbol, quote.Date[bar].Format("2006-01-02"), precision, quote.Open[bar], precision, quote.High[bar], precision, quote.Low[bar], precision, quote.Close[bar], precision, quote.Volume[bar])
 			buffer.WriteString(str)
 		}
 	}
